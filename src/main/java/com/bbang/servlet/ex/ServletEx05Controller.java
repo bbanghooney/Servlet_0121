@@ -1,4 +1,4 @@
-package com.bbang.servlet.test;
+package com.bbang.servlet.ex;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/servlet/ex04")
-public class ServletEx04Controller extends HttpServlet {
+@WebServlet("/servlet/ex05")
+public class ServletEx05Controller extends HttpServlet {
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setCharacterEncoding("utf-8");
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
 		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();

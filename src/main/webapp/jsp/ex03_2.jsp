@@ -9,6 +9,11 @@
 <body>
 	<%
 		request.setCharacterEncoding("utf-8");
+		String[] foods = request.getParameterValues("food");
+		String foodsString = "";
+		for(int i = 0; i < foods.length; i++) {
+			foodsString += foods[i] + ", ";
+		}
 	%>
 
 	<table border="1">
@@ -22,9 +27,12 @@
 				</tr>
 				<tr>
 					<th>음식</th>
-					<td><%= request.getParameter("food") %></td>
+					<td><%= foodsString %></td>
 				</tr>
-			
+				<tr>
+					<th>과일</th>
+					<td><%= request.getParameter("fruit") %></td>
+				</tr>
 			</table>
 </body>
 </html>

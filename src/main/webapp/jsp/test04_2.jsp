@@ -32,7 +32,7 @@
 			%>
 			
 		<div class="display-2">
-			<%= num1 %> <%= request.getParameter("calculation") %> <%= num2 %> = <span class="text-primary"><%= result %></span>
+			<%=num1 %> <%=request.getParameter("calculation") %> <%=num2 %> = <span class="text-primary"><%=result %></span>
 		</div>
 		
 	</body>

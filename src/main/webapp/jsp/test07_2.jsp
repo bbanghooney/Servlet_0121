@@ -50,7 +50,7 @@
 								Double point = (Double)list.get(i).get("point");
 					//			if(request.getParameter("except") == null ||  point > 4.0) {
 						
-								if(request.getParameter("except").equals("excpet") && point <= 4.0) {
+								if(request.getParameter("except") != null || request.getParameter("except").equals("excpet") && point <= 4.0) {
 									continue;
 								}
 					%>

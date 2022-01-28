@@ -57,12 +57,25 @@
 		        } 
 		    };
 		    list.add(map);
+		    
+		    int id = Integer.parseInt(request.getParameter("id"));
 		%>
 		
 		<div class="d-flex">
-			<%= %>
+			<% 
+				for(Map<String, Object> book : list) {
+					if(id == (Integer)book.get("id")) {
+						%>
+			<img src="<%=book.get("image") %>" width="350">
 			<div>
+				<div class="display-1 font-weight-bold"><%=book.get("title") %></div>
+				<div class="display-3 text-info"><%=book.get("author") %></div>
+				<div class="display-4 text-secondary"><%=book.get("publisher") %></div>
 			</div>
+						<%
+					}
+				}
+			%>
 		</div>
 		
 		

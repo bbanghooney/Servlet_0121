@@ -77,8 +77,8 @@
 				%>
 					<tr>
 						<td><%=list.get(i).get("id") %></td>
-						<td><%=list.get(i).get("image") %></td>
-						<td class="text-primary display-4" method="get" action="/jsp/test08_2.jsp" name="title" value=""><%=list.get(i).get("title") %></td>
+						<td><img src="<%=list.get(i).get("image") %>" alt="<%=list.get(i).get("title") %>" width="100"></td>
+						<td class="text-primary display-4"><a href="/jsp/test08_2.jsp?id=<%=list.get(i).get("id") %>"><%=list.get(i).get("title") %></a></td>
 					</tr>
 				<% } %>
 				</tbody>

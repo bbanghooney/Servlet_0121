@@ -13,16 +13,62 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+	<%
+		MysqlService mysqlService = MysqlService.getInstance();
+		mysqlService.connect();
+		
+		String query = "SELECT `id`, `nickname` FROM `seller` ORDER BY `id`;";
+		ResultSet resultSet = mysqlService.select(query);
+	%>
+	
 	<div class="container">
 		<jsp:include page="header.jsp"/>
 		<jsp:include page="nav.jsp"/>
 		
 		<section>
-			<div class="display-4">물건 올리기</div>
+			<div class="display-4 my-4">물건 올리기</div>
+			
+			<form method="post" action="/db/marketInsert">
+				<!-- 아이디, 제목, 가격 -->
+				<div class="d-flex">
+					<!-- 아이디 선택 -->
+					<div>
+						<select class="form-select">
+							<option selected>-아이디 선택-</option>
+							<% while(resultSet.next()) { %>
+								<option name="sellerId"  value="<%= resultSet.getInt("seller.id") %>"><%= resultSet.getString("seller.nickname") %></option>
+							<% } %>
+						</select>
+					</div>
+					<!-- 제목 -->
+					<div>
+						<input type="text" class="form-control" placeholder="제목" name="title">
+					</div>
+					<!-- 가격 -->
+					<div class="d-flex">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="가격" name="price">
+							<div class="input-group-append">
+								<span class="input-group-text">원</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 본문, 이미지 url, 저장 -->
+				<textarea rows="10" cols="100" name="description"></textarea>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">이미지 url</span>
+					</div>
+					<input type="text" class="form-control" name="picture">
+				</div>
+				<button type="submit" class="btn btn-success">저장</button>
+			</form>
 		</section>
+	</div>
 		
 		
 		<jsp:include page="footer.jsp"/>
-	</div>
 </body>
 </html>

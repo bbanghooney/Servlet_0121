@@ -13,13 +13,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <style>
-	section {
-		height: 500px;
-	}
+	
 	
 	#items {
 		padding: 10px;
-		width: 300px;
+		width: 330px;
 		height: 300px;
 	}
 	
@@ -39,12 +37,16 @@
 		<jsp:include page="header.jsp"/>
 		<jsp:include page="nav.jsp"/>
 		
-		<section class="d-flex">
+		<section class="d-flex flex-wrap">
 			<% while(resultSet.next()) { %>
 			<div class="border border-warning" id="items">
-				<img src="<%= resultSet.getString("used_goods.picture") %>" width="140px" alt="picture">
+				<% if(resultSet.getString("used_goods.picture") == null) { %>
+					<div class="display-4">이미지가 없습니다.</div>
+				<% } else { %>
+					<img src="<%= resultSet.getString("used_goods.picture") %>" width="140px" alt="picture">
+				<% } %>
 				<div class="font-weight-bold"><%= resultSet.getString("used_goods.title") %></div>
-				<div class="text-secondary"><%= resultSet.getInt("used_goods.price") %></div>
+				<div class="text-secondary"><%= resultSet.getInt("used_goods.price") %>원</div>
 				<div class="text-success"><%= resultSet.getString("seller.nickname") %></div>
 			</div>
 			<% } %>
